@@ -51,15 +51,32 @@ public class cityOperationClass {
 			int iTest;
 			
 			for(iTest=0;iTest<visitor.neigCityBuffer;iTest++) {
-				System.out.println( (iTest+1) + ".komsu:" +  visitor.neigCitys[iTest]);
+				System.out.println( (iTest+1) + ".komsu:" +  visitor.neigCitys.get(iTest));
 			}
 			
-			for(iTest=0;iTest<visitor.neigDistances.length;iTest++) {
-				System.out.println( (iTest+1) +".komsu mesafe:" + visitor.neigDistances[iTest]);	
+			for(iTest=0;iTest<81;iTest++) {
+				System.out.println( (iTest+1) +".komsu mesafe:" + visitor.neigDistances.get(iTest));	
 			}
 			
 			visitor = visitor.next;
 		}
+		
+	}
+	
+	public void findPlate (String tmp) {
+		
+		mainCityClass finder = head;
+		
+		
+		while(finder != null) {
+			
+			if(tmp.equals(finder.cityName)) {
+				System.out.println(finder.cityName + " listende var" + finder.plate);
+			}
+			finder = finder.next;
+		}
+		
+		
 		
 	}
 	

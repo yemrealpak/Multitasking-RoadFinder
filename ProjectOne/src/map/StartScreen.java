@@ -1,47 +1,43 @@
-package projectMainFile;
+package map;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 import linkedList.cityOperationClass;
-import map.StartScreen;
+import java.awt.BorderLayout;
 
+import java.awt.EventQueue;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import java.awt.event.WindowStateListener;
+import java.awt.event.WindowEvent;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.Button;
+import javax.swing.JRadioButton;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Main {
+public class StartScreen extends JFrame {
 
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		
-		Main use = new Main();
 		
-		//use.readFile();
 		
-		StartScreen scc = new StartScreen();
-		
-		Scanner oku = new Scanner(System.in);
-		
-		String[] enterCity = new String[10];
-		
-		System.out.println("Gitmek istediðiniz sehirleri giriniz=? ");
-		System.out.println("Cýkmak için 2 defa enter");
-		
-		int i;
-		String tmp2;
-		for(i=0;i<10;i++) {
-			System.out.println( i+1 + ".Sehir:");
-			tmp2 = oku.next();
-			enterCity[i] = tmp2;
-			
-		
-			
-		}
-		
-	
-	
-	}
-	
-	public void readFile() {
 		File file = new File("Sehirler.txt");
 		try {
 			
@@ -123,9 +119,7 @@ public class Main {
 				
 				cityOp.addTail(plate, neigCityBuffer, cityName, neigCitys, neigDistances);
 				
-				cityOp.printList();
-				
-				
+				//cityOp.printList();
 				
 			}
 			
@@ -133,12 +127,64 @@ public class Main {
 			
 			
 			
+			//Start Project
+			
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						StartScreen frame = new StartScreen();
+						frame.setVisible(false);
+						
+			
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			
+			//cityOp.printList();
+			
+			
 		} catch (FileNotFoundException e) {
 			
 			e.printStackTrace();
 			System.out.println("Dosya mevcut deðil");
 		}
-	}
+		
 	
-}
+		
+		
+	}
 
+
+	public StartScreen() {
+		addWindowStateListener(new WindowStateListener() {
+			public void windowStateChanged(WindowEvent e) {
+			}
+		});
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1280, 720);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton_1 = new JButton("2");
+		btnNewButton_1.setVisible(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(257, 261, 273, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("1");
+		btnNewButton.setBounds(257, 226, 273, 23);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\ye_al\\Desktop\\Git\\ProjectOne\\img2\\4lturkiye-siyasi-haritasi.png"));
+		lblNewLabel.setBounds(-10, 0, 1264, 681);
+		contentPane.add(lblNewLabel);
+	}
+}
